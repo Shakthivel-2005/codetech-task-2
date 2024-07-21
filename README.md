@@ -1,3 +1,4 @@
+
 NAME:SHAKTHIVEL G
 
 
@@ -47,5 +48,6 @@ Unit Selection: Allow users to switch between Celsius and Fahrenheit.
 Conclusion
 Building a weather forecast app using CSS, HTML, and JavaScript is a rewarding project that enhances your frontend development skills. By following the outlined steps and documenting your project comprehensively, you create a valuable resource for yourself and others interested in understanding and expanding upon your work.
 
+SCEERN SHOT OF MY OUT PUT
 
-
+![Screenshot (129)](https://github.com/user-attachments/assets/4e22c9c4-3d0c-4c8a-9084-e7b5ed0a8efd)
