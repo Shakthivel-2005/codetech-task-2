@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Weather Forecast</h1>
+        <div id="weather">
+            <div id="location"></div>
+            <div id="temperature"></div>
+            <div id="description"></div>
+            <div id="icon"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+#weather {
+    margin-top: 20px;
+}
+
+#location {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#temperature {
+    font-size: 36px;
+}
+
+#description {
+    margin-top: 10px;
+    font-style: italic;
+}
+
+#icon {
+    margin-top: 10px;
+}
+
+
+
+
+
+const apiKey = 'YOUR_API_KEY'; // Replace with your own API key from a weather service provider
+
+// Selecting elements from the DOM
+const locationElement = document.getElementById('location');
+const temperatureElement = document.getElementById('temperature');
+const descriptionElement = document.getElementById('description');
+const iconElement = document.getElementById('icon');
+
+// Function to fetch weather data
+async function getWeather(city) {
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        
+        // Update UI with weather data
+        locationElement.textContent = `${data.name}, ${data.sys.country}`;
+        temperatureElement.textContent = `${Math.round(data.main.temp)}°C`;
+        descriptionElement.textContent = data.weather[0].description;
+        iconElement.innerHTML = `<img src="https://openweathermap.org/img/wn/${data.weather[0].icon}.png" alt="Weather Icon">`;
+
+    } catch (error) {
+        console.error('Error fetching weather data:', error);
+        locationElement.textContent = 'Failed to fetch weather';
+        temperatureElement.textContent = '';
+        descriptionElement.textContent = '';
+        iconElement.innerHTML = '';
+    }
+}
+
+// Initial load with a default city
+getWeather('New York');
+
+
+
